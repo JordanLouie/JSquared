@@ -19,8 +19,13 @@
   <INSERT YOUR RESULTS ANALYSIS HERE>
   ======================================*/
 
-public class MergeSortTester 
-{
+public class MergeSortTester {
+
+    public static void populate ( int[] arr ) { 
+	for ( int i = 0 ; i < arr.length ; i++ ) { 
+	    arr[i] = ((int) ((Math.random()) * 100)); 
+	} 
+    } 
 
     /******************************
      * execution time analysis 
@@ -28,8 +33,15 @@ public class MergeSortTester
      *  YOUR APPARATUS FOR GENERATING EXECUTION 
      *  TIME DATA...>
      ******************************/
-    public static void main( String[] args ) 
-    {
+    public static void main( String[] args ) {
+	int[] arr0 = {0}; 
+	int[] arr1 = new int[10];
+    
+	MergeSort.printArray(arr0);
+	populate(arr1); 
+	MergeSort.printArray(arr1);  
+	//add the thing to keep track of time and run a couple of hundred of thousands of times and yeah
+	MergeSort.printArray(MergeSort.sort(arr1));
 
     }//end main
 
