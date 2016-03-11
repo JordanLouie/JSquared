@@ -2,21 +2,21 @@
   class MergeSortTester
 
   ALGORITHM:
-  <INSERT YOUR DISTILLATION OF ALGO HERE>
+To test this, I basically wrote two functions: one that would populate the array with random numbers and another to print how much time it takes for each complete sort and the average of all sorts for an array of size n. Each is tested 100 times and the average of those 100 are shown below.
 
-  BIG-OH CLASSIFICATION OF ALGORITHM:
-  <INSERT YOUR EXECUTION TIME CATEGORIZATION OF MERGESORT HERE>
+  BIG-OH CLASSIFICATION OF ALGORITHM: O(nlogn)
 
   Mean execution times for dataset of size n:
-  Batch size: <# of times each dataset size was run>
-  n=1       time: 
-  n=10      time: 
-  n=100     time: 
-  ...
-  n=<huge>  time: 
+  Batch size: 1-100,000 (in factors of 10) (using millis)
+  n=1       time: 0 
+  n=10      time: 1
+  n=100     time: 12
+  n=1000    time: 102
+  n=10000   time: 1156
+  n=100000  time: 10259
 
-  ANALYSIS:
-  <INSERT YOUR RESULTS ANALYSIS HERE>
+  ANALYSIS: As expected, the sort times do start to take quite a jump as the number gets larger and larger. Based on the times gathered, I think it's a solid sample size to show that the growth isn't exactly exponential but more leaning towards n(logn).
+  
   ======================================*/
 
 public class MergeSortTester {
@@ -27,37 +27,41 @@ public class MergeSortTester {
 	} 
     } 
 
-    /******************************
-     * execution time analysis 
-     * <INSERT YOUR DESCRIPTION HERE OF 
-     *  YOUR APPARATUS FOR GENERATING EXECUTION 
-     *  TIME DATA...>
-     ******************************/
-    public static void main( String[] args ) {
-	int[] arr0 = {0}; 
-	int[] arr1 = new int[10];
+    public static void hundredTester ( int [] arr ) { 	
 	long TStart = 0; 
-	long TEnd = 0;
+	long TEnd = 0; 
 	long TPassed = 0; 
 	long TAverage = 0;
-
-	MergeSort.printArray(arr0);
-	
 	for (int i = 0 ; i < 100 ; i++) { 
-	    populate(arr1); 
-	    MergeSort.printArray(arr1);  
+	    populate(arr); 
+	    MergeSort.printArray(arr); 
 	    //add the thing to keep track of time and run a couple of hundred of thousands of times and yeah
 	    TStart = System.currentTimeMillis(); 
 	    System.out.println("Time Start: " + TStart);
-	    MergeSort.printArray(MergeSort.sort(arr1));
+	    MergeSort.printArray(MergeSort.sort(arr));
 	    TEnd = System.currentTimeMillis(); 
 	    System.out.println("Time End: " + TEnd);
 	    TPassed = TEnd - TStart; 
-	    System.out.println (TPassed); 
+	    System.out.println ("Time Passed: " + TPassed); 
 	    TAverage += TPassed; 
 	} 
 	TAverage /= 100; 
-	System.out.println(TAverage);
+	System.out.println("Average for n(" + arr.length + "): " + TAverage);
+    }
+
+    public static void main( String[] args ) {
+	int[] arr0 = new int[1]; 
+	int[] arr1 = new int[10];
+	int[] arr2 = new int[100]; 
+	int[] arr3 = new int[1000];
+	int[] arr4 = new int[10000];
+	int[] arr5 = new int[100000];
+	//hundredTester (arr0);
+	//hundredTester (arr1);
+	//hundredTester (arr2);
+	//hundredTester (arr3);
+	//hundredTester (arr4);
+	hundredTester (arr5);
     }//end main
 
 }//end class
